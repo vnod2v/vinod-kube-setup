@@ -1,0 +1,21 @@
+---
+- name: add gpg key
+  apt_key:
+    url: "{{kube_ubuntu_repo}}"
+
+- name: add k8s distribution to k8s list
+  lineinfile:
+    path: /etc/apt/sources.list.d/kubernetes.list
+    insertafter: EOF
+    line: "{{kube_add_list}}"
+    state: present
+
+- name: install k8s package
+  apt:
+    name: "{{ item }}"
+    state: present
+    with_items:
+      - kubelet
+      - kubeadm
+      - kubectl
+

@@ -1,14 +1,22 @@
 ---
 # defaults file for vinod-kube-setup
 
-#docker repo url
+# docker repo url
 docker_repo: https://download.docker.com/linux
 docker_repo_distro: "{{ docker_repo }}/{{ ansible_distribution | lower }}"
 
-#for Ubuntu
+# docker for Ubuntu
 docker_repo_gpg: "{{ docker_repo_distro }}/gpg"
 docker_apt_arch: amd64
 docker_apt_release_channel: stable
 docker_apt_repo: "deb [arch={{ docker_apt_arch }}] {{ docker_repo_distro }} {{ ansible_distribution_release }} {{docker_apt_release_channel}}"
 
+# kubernetes
+google_repo: https://packages.cloud.google.com
+
+# kubernetes for ubuntu
+kube_ubuntu_repo: "{{ google_repo }}/apt/doc/apt-key.gpg"
+kube_list: /etc/apt/sources.list.d/kubernetes.list
+kube_dist: kubernetes-xenial
+kube_add_to_list: "deb {{ kube_ubuntu_repo }} {{ kube_dist }} main"
 
