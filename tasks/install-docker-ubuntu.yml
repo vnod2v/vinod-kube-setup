@@ -1,0 +1,20 @@
+---
+- name: add gpg key
+  apt_key:
+    url: "{{ docker_repo_gpg }}"
+    state: present
+
+- name: add apt repo
+  apt_repository:
+    repo: "{{ docker_apt_repo }}"
+    update_cache: yes
+
+- name: install docker
+  apt:
+    name: docker-ce
+    state: present
+
+- name: check docker service
+  service:
+    name: docker
+    state: started

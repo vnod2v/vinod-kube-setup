@@ -1,2 +1,14 @@
 ---
 # defaults file for vinod-kube-setup
+
+#docker repo url
+docker_repo: https://download.docker.com/linux
+docker_repo_distro: "{{ docker_repo }}/{{ ansible_distribution | lower }}"
+
+#for Ubuntu
+docker_repo_gpg: "{{ docker_repo_distro }}/gpg"
+docker_apt_arch: amd64
+docker_apt_release_channel: stable
+docker_apt_repo: "deb [arch={{ docker_apt_arch }}] {{ docker_repo_distro }} {{ ansible_distribution_release }} {{docker_apt_release_channel}}"
+
+
