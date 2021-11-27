@@ -36,5 +36,5 @@
 
 - name: deploy podnetwork
   shell: kubectl apply -f calico.yml
-  when: "{{ kube_pod_network }}" == "calico"
+#  when: "{{ kube_pod_network }}" == "calico"
 
