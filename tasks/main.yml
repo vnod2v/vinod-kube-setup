@@ -1,7 +1,13 @@
 ---
 # tasks file for vinod-kube-setup
+
 - name: install docker on ubuntu
   include_tasks: install-docker-ubuntu.yml
 
 - name: install kubectl kubeadm kubelet
   include_tasks: install-kube-ubuntu.yml
+
+- block:
+    - name: init cluster on master node
+      include_tasks: init-cluster-master.yml
+  when: inventory_hostname in groups['master']
