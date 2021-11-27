@@ -1,3 +1,9 @@
 ---
 # tasks file for vinod-kube-setup
-- include_tasks: install-docker-ubuntu.yml
+- name: install python
+  apt:
+    name: python
+    state: present
+
+- name: install docker on ubuntu
+  include_tasks: install-docker-ubuntu.yml
