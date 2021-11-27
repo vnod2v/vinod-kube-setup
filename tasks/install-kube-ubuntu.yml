@@ -25,19 +25,6 @@
 - name: restart kubelet
   service: name=kubelet state=restarted
 
-- name: get kubelet status
-  shell: systemctl status kubelet
-  register: kubelet_status
-
-- name: check kubelet is up
-  debug:
-    msg: "kubelet is up"
-  when: kubelet_status.rc == 0
-
-- name: kubelet failed to start
-  debug:
-    var: kubelet_status.stdout
-  when: kubelet_status.rc != 0
 
 
 
