@@ -1,7 +1,7 @@
 ---
 
 - name: init kubeadm
-  shell: kubeadm init --apiserver-advertise-address="{{kube_apiserver-ip}}" --pod-network-cidr="{{kube_pod_network_cidr}}"
+  command: kubeadm init --apiserver-advertise-address={{kube_apiserver_ip}} --pod-network-cidr={{kube_pod_network_cidr}}
 
 - name: create kube directory for non-root user
   become: true
