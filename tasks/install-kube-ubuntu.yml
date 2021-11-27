@@ -18,6 +18,7 @@
 - name: install k8s package
   apt:
     name:
+      - kubelet
       - kubeadm
       - kubectl
     state: present
