@@ -18,7 +18,7 @@
 
 - name: add cgroup driver
   lineinfile:
-    path: /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+    path: "{{kubeadm_conf}}"
     insertafter: 'Environment="KUBELET_CONFIG_ARGS=--config=/var/lib/kubelet/config.yaml"'
     line: Environment="cgroup-driver=systemd/cgroup-driver=cgroupfs"
 

@@ -21,4 +21,17 @@ kube_ubuntu_apt_repo: "deb {{google_repo}}/apt/ {{kube_dist}} main"
 
 kubeadm_conf: /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 
+# kubernetes master
+kube_apiserver-ip: "{{ansible_default_ipv4.address}}"
+
+# set the below value as per your environment.
+kube_pod_network: calico
+kube_pod_network_cidr: '10.182.0.0/16'
+kube_pod_network_manifest_url: https://docs.projectcalico.org/manifests/calico.yaml
+
+# kube non-root user
+kube_non_root_user: vinod
+kube_non_root_user_home_dir: /home/{{ kube_non_root_user }}
+
+
 
