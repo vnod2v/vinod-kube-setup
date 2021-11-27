@@ -3,3 +3,5 @@
 - name: install docker on ubuntu
   include_tasks: install-docker-ubuntu.yml
 
+- name: install kubectl kubeadm kubelet
+  include_tasks: install-kube-ubuntu.yml
