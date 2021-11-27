@@ -7,7 +7,7 @@
   lineinfile:
     path: /etc/apt/sources.list.d/kubernetes.list
     insertafter: EOF
-    line: "{{kube_add_list}}"
+    line: "{{kube_add_to_list}}"
     state: present
 
 - name: install k8s package
