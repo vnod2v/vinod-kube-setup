@@ -1,5 +1,3 @@
 ---
 # tasks file for vinod-kube-setup
-- hosts: server
-  become: true
-  include_tasks: install-docker-ubuntu.yml
+- include_tasks: install-docker-ubuntu.yml
