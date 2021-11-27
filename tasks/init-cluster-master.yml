@@ -23,6 +23,7 @@
 
 - name: copy kubeconfig to user directory
   become: true
+  become_user: root
   copy:
     src: /etc/kubernetes/admin.conf
     dest: kube_config_user_dir.path
