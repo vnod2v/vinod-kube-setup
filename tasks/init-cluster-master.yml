@@ -36,5 +36,6 @@
     dest: "{{kube_non_root_user_home_dir}}"
 
 - name: deploy podnetwork
-  shell: kubectl apply -f "{{kube_pod_network}}".yml
+  shell: kubectl apply -f calico.yml
+  when: "{{kube_pod_network}}" == "calico"
 
