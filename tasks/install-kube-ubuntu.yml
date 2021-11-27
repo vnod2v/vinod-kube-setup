@@ -3,17 +3,10 @@
   apt_key:
     url: "{{kube_ubuntu_repo}}"
 
-- name: create kubernetes.list file
-  file:
-    path: /etc/apt/sources.list.d/kubernetes.list
-    state: touch
-
-- name: add k8s distribution to k8s list
-  lineinfile:
-    path: /etc/apt/sources.list.d/kubernetes.list
-    insertafter: EOF
-    line: "{{kube_add_to_list}}"
-    state: present
+- name: add apt repo
+  apt_repository:
+    repo: "{{ kube_ubuntu_apt_repo }}"
+    update_cache: yes
 
 - name: install k8s package
   apt:

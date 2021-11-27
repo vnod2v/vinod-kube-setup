@@ -15,8 +15,9 @@ docker_apt_repo: "deb [arch={{ docker_apt_arch }}] {{ docker_repo_distro }} {{ a
 google_repo: https://packages.cloud.google.com
 
 # kubernetes for ubuntu
-kube_ubuntu_repo: "{{ google_repo }}/apt/doc/apt-key.gpg"
-kube_list: /etc/apt/sources.list.d/kubernetes.list
+kube_ubuntu_repo_gpg: "{{ google_repo }}/apt/doc/apt-key.gpg"
+kube_ubuntu_dist-repo: http://apt.kubernetes.io/
 kube_dist: kubernetes-xenial
-kube_add_to_list: "deb {{ kube_ubuntu_repo }} {{ kube_dist }} main"
+kube_ubuntu_apt_repo: "deb {{kube_ubuntu_dist}} {{kube_dist}} main"
+
 
