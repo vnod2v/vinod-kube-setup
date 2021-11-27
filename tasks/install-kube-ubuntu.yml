@@ -1,7 +1,7 @@
 ---
 - name: add gpg key
   apt_key:
-    url: "{{kube_ubuntu_repo}}"
+    url: "{{ kube_ubuntu_repo_gpg }}"
 
 - name: add apt repo
   apt_repository:
