@@ -21,6 +21,7 @@
   register: kube_config_user_dir
 
 - name: copy kubeconfig to user directory
+  become: true
   copy:
     src: /etc/kubernetes/admin.conf
     dest: kube_config_user_dir.path
