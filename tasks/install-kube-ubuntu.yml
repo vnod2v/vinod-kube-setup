@@ -17,10 +17,10 @@
 
 - name: install k8s package
   apt:
-    name: "{{ item }}"
-    state: present
-    with_items:
+    name:
       - kubelet
       - kubeadm
       - kubectl
+    state: present
+
 
