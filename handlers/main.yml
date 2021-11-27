@@ -1,2 +1,4 @@
 ---
 # handlers file for vinod-kube-setup
+- name: restart kubelet
+  service: name=kubelet state=restarted
