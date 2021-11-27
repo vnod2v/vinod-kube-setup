@@ -20,7 +20,7 @@
   lineinfile:
     path: "{{kubeadm_conf}}"
     insertafter: 'Environment="KUBELET_CONFIG_ARGS=--config=/var/lib/kubelet/config.yaml"'
-    line: Environment="cgroup-driver=systemd/cgroup-driver=cgroupfs"
+    line: Environment="cgroup-driver=cgroupfs"
 
 
 
