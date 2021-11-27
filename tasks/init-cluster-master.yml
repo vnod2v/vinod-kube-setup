@@ -1,7 +1,6 @@
 ---
 
 - name: init kubeadm
-  changed: false
   command: >
     kubeadm init
     --apiserver-advertise-address={{kube_apiserver_ip}}
