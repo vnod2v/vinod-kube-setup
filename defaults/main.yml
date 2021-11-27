@@ -17,6 +17,6 @@ google_repo: https://packages.cloud.google.com
 # kubernetes for ubuntu
 kube_ubuntu_repo_gpg: "{{ google_repo }}/apt/doc/apt-key.gpg"
 kube_dist: kubernetes-xenial
-kube_ubuntu_apt_repo: "deb {{google_repo}} {{kube_dist}} main"
+kube_ubuntu_apt_repo: "deb {{google_repo}}/apt/ {{kube_dist}} main"
 
 
