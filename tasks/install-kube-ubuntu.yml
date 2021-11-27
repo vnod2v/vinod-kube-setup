@@ -3,6 +3,11 @@
   apt_key:
     url: "{{kube_ubuntu_repo}}"
 
+- name: create kubernetes.list file
+  file:
+    path: /etc/apt/sources.list.d/kubernetes.list
+    state: touch
+
 - name: add k8s distribution to k8s list
   lineinfile:
     path: /etc/apt/sources.list.d/kubernetes.list
