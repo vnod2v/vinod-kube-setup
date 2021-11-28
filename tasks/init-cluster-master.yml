@@ -18,36 +18,37 @@
 #  loop: "{{ kubeadm_init.stdoutlines }}"
 
 # the below block to execute only on kubeadm initialization
-- name:
-  become: true
-  become_user: "{{kube_non_root_user}}"
-  file:
-    path: "{{kube_non_root_user_home_dir}}/.kube/config"
-    state: directory
+- block
+    - name: create
+      file:
+        path: "{{kube_non_root_user_home_dir}}/.kube"
+        state: directory
 
-- name: copy kubeconfig to user directory
-  shell: sudo cp -i /etc/kubernetes/admin.conf "{{kube_non_root_user_home_dir}}/.kube/config"
+    - name: copy kubeconfig to user directory
+      shell: sudo cp -i /etc/kubernetes/admin.conf "{{kube_non_root_user_home_dir}}/.kube/config"
 
-- name: chown kubeconfig directory
-  shell: sudo chown -R "{{kube_non_root_user}}":"{{kube_non_root_user}}" "{{kube_non_root_user_home_dir}}/.kube/config"
+    - name: chown kubeconfig directory
+      shell: sudo chown -R "{{kube_non_root_user}}":"{{kube_non_root_user}}" "{{kube_non_root_user_home_dir}}/.kube/config"
 
-#- name: copy kubeconfig to user directory --> NOT WORKING. GETTING PERMISSION DENIED
-#  copy:
-#    src: /etc/kubernetes/admin.conf
-#    dest: "{{kube_non_root_user_home_dir}}/.kube/config"
-#    mode: 600
-#    owner: "{{kube_non_root_user}}"
-#    group: "{{kube_non_root_user}}"
-#    delegate_to: localhost
+    #- name: copy kubeconfig to user directory --> NOT WORKING. GETTING PERMISSION DENIED
+    #  copy:
+    #    src: /etc/kubernetes/admin.conf
+    #    dest: "{{kube_non_root_user_home_dir}}/.kube/config"
+    #    mode: 600
+    #    owner: "{{kube_non_root_user}}"
+    #    group: "{{kube_non_root_user}}"
+    #    delegate_to: localhost
 
-- name: deploy podnetwork
-  become_user: "{{kube_non_root_user}}"
-  shell: kubectl apply -f calico.yml
-  register: podnetwork
-  ignore_errors: true
+    - name: deploy podnetwork
+      shell: kubectl apply -f calico.yml
+      register: podnetwork
+      ignore_errors: true
 
-- name: echo calico output
-  debug:
-    var: podnetwork
-#  when: "{{ kube_pod_network }}" == "calico"
+    - name: echo calico output
+      debug:
+        var: podnetwork
+    #  when: "{{ kube_pod_network }}" == "calico"
+
+    become: true
+    become_user: "{{kube_non_root_user}}"
 
