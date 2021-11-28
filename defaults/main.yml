@@ -20,6 +20,7 @@ kube_dist: kubernetes-xenial
 kube_ubuntu_apt_repo: "deb {{google_repo}}/apt/ {{kube_dist}} main"
 
 kubeadm_conf: /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+kubelet_conf: /var/lib/kubelet/config.yaml
 
 # kubernetes master
 kube_apiserver_ip: "{{ansible_default_ipv4.address}}"
