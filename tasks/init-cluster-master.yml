@@ -40,13 +40,6 @@
 #    group: "{{kube_non_root_user}}"
 #    delegate_to: localhost
 
-- name: download pod network manifest
-  become: true
-  become_user: "{{kube_non_root_user}}"
-  get_url:
-    url: "{{kube_pod_network_manifest_url}}"
-    dest: "{{kube_non_root_user_home_dir}}"
-
 - name: deploy podnetwork
   shell: kubectl apply -f calico.yml
 #  when: "{{ kube_pod_network }}" == "calico"
