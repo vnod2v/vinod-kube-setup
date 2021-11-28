@@ -29,7 +29,7 @@
   shell: sudo cp -i /etc/kubernetes/admin.conf "{{kube_non_root_user_home_dir}}/.kube/config"
 
 - name: chown kubeconfig directory
-  shell: sudo chown "{{kube_non_root_user_home_dir}}":"{{kube_non_root_user_home_dir}}" "{{kube_non_root_user_home_dir}}/.kube/config"
+  shell: sudo chown "{{kube_non_root_user}}":"{{kube_non_root_user}}" "{{kube_non_root_user_home_dir}}/.kube/config"
 
 #- name: copy kubeconfig to user directory --> NOT WORKING. GETTING PERMISSION DENIED
 #  copy:
