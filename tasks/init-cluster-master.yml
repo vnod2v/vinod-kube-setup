@@ -26,16 +26,12 @@
     state: directory
 
 - name: copy kubeconfig to user directory
-  shell: whoami
-  register: whoami
-- debug:
-    var: whoami
-#  copy:
-#    src: /etc/kubernetes/admin.conf
-#    dest: "{{kube_non_root_user_home_dir}}/.kube/config"
-#    mode: preserve
-#    owner: "{{kube_non_root_user}}"
-#    group: "{{kube_non_root_user}}"
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: "{{kube_non_root_user_home_dir}}/.kube/config"
+    mode: preserve
+    owner: "{{kube_non_root_user}}"
+    group: "{{kube_non_root_user}}"
 
 - name: download pod network manifest
   become: true
