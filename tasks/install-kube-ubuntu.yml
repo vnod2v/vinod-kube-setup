@@ -25,7 +25,7 @@
 - name: change cgroup driver from systemd to cgroupfs
   lineinfile:
     path: "{{kubelet_conf}}"
-    firstmatch: "cgroupDriver: systemd"
+    regexp: "cgroupDriver: systemd"
     line: "cgroupDriver: cgroupfs"
     state: absent
 
