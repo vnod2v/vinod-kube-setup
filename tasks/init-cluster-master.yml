@@ -44,11 +44,6 @@
       register: podnetwork
       ignore_errors: true
 
-    - name: echo calico output
-      debug:
-        var: podnetwork
-    #  when: "{{ kube_pod_network }}" == "calico"
-
   become: true
   become_user: "{{kube_non_root_user}}"
 
