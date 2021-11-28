@@ -9,11 +9,7 @@
 
 - block:
 
-    - name: check if kubeadm is initialized already
-
-
     - name: init cluster on master node
       include_tasks: init-cluster-master.yml
-
 
   when: inventory_hostname in groups['master']
