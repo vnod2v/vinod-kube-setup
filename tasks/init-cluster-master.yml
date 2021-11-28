@@ -19,8 +19,8 @@
 
 # the below block to execute only on kubeadm initialization
 - name:
-#  become: true
-#  become_user: "{{kube_non_root_user}}"
+  become: true
+  become_user: "{{kube_non_root_user}}"
   file:
     path: "{{kube_non_root_user_home_dir}}/.kube/config"
     state: directory
@@ -32,6 +32,7 @@
     mode: 600
     owner: "{{kube_non_root_user}}"
     group: "{{kube_non_root_user}}"
+    delegate_to: localhost
 
 - name: download pod network manifest
   become: true
