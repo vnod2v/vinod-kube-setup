@@ -28,6 +28,7 @@
 
 - name: copy kubeconfig to user directory
   become: true
+  become_user: root
   copy:
     src: /etc/kubernetes/admin.conf
     dest: "{{kube_non_root_user_home_dir}}/.kube/config"
