@@ -18,6 +18,7 @@
 #  loop: "{{ kubeadm_init.stdoutlines }}"
 
 # the below block to execute only on kubeadm initialization
+- name: post kubeadm init steps
   block:
     - name: create .kube directory
       file:
