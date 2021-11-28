@@ -6,7 +6,6 @@
     --apiserver-advertise-address={{kube_apiserver_ip}}
     --pod-network-cidr={{kube_pod_network_cidr}}
     --ignore-preflight-errors=all
-  ignore_errors: true
   register: kubeadm_init
 
 - name: test print kubeadm init output
@@ -20,21 +19,20 @@
 
 # the below block to execute only on kubeadm initialization
 - name:
-  become: true
-  become_user: "{{kube_non_root_user}}"
+#  become: true
+#  become_user: "{{kube_non_root_user}}"
   file:
     path: "{{kube_non_root_user_home_dir}}/.kube/config"
     state: directory
 
 - name: copy kubeconfig to user directory
-  become: true
-  become_user: root
-  copy:
-    src: /etc/kubernetes/admin.conf
-    dest: "{{kube_non_root_user_home_dir}}/.kube/config"
-    mode: preserve
-    owner: "{{kube_non_root_user}}"
-    group: "{{kube_non_root_user}}"
+  command: whoami
+#  copy:
+#    src: /etc/kubernetes/admin.conf
+#    dest: "{{kube_non_root_user_home_dir}}/.kube/config"
+#    mode: preserve
+#    owner: "{{kube_non_root_user}}"
+#    group: "{{kube_non_root_user}}"
 
 - name: download pod network manifest
   become: true
