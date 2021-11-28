@@ -15,8 +15,10 @@
 #    var: kubeadm_init
 
 - name: test loop through stdout.lines
-  command: echo "{{item}}"
-  until : kubeadm_init.stdoutlines == "Your Kubernetes control-plane has initialized successfully!"
+  debug:
+    msg: {{ item }}
+  until : {{ item }} == "Your Kubernetes control-plane has initialized successfully!"
+  loop: {{ kubeadm_init.stdoutlines }}
 
 # the below block to execute only on kubeadm initialization
 - name:
