@@ -9,12 +9,14 @@
   ignore_errors: true
   no_log: true
   register: kubeadm_init
-  tags: kubeadm_init
 
-- name: print kubeadm init output
-  debug:
-    var: kubeadm_init
-  tags: kubeadm_init
+#- name: test print kubeadm init output
+#  debug:
+#    var: kubeadm_init
+
+- name: test loop through stdout.lines
+  command: echo "{{item}}"
+  until : kubeadm_init.stdoutlines == "Your Kubernetes control-plane has initialized successfully!"
 
 # the below block to execute only on kubeadm initialization
 - name:
