@@ -10,9 +10,9 @@
   no_log: true
   register: kubeadm_init
 
-#- name: test print kubeadm init output
-#  debug:
-#    var: kubeadm_init
+- name: test print kubeadm init output
+  debug:
+    var: kubeadm_init
 
 - name: test loop through stdout.lines
   debug:
