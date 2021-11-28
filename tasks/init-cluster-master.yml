@@ -12,31 +12,33 @@
 
 - name: print kubeadm init output
   debug:
-    var: kubeadm_init.stdout
+    var: kubeadm_init
 
-- name: create kube directory for non-root user
-  become: true
-  become_user: "{{kube_non_root_user}}"
-  file:
-    path: "{{kube_non_root_user_home_dir}}/.kube/config"
-    state: directory
+# the below block to execute only on kubeadm initialization
+- block
+    - name: create kube directory for non-root user
+      become: true
+      become_user: "{{kube_non_root_user}}"
+      file:
+        path: "{{kube_non_root_user_home_dir}}/.kube/config"
+        state: directory
 
-- name: copy kubeconfig to user directory
-  copy:
-    src: /etc/kubernetes/admin.conf
-    dest: "{{kube_non_root_user_home_dir}}/.kube/config"
-    mode: preserve
-    owner: "{{kube_non_root_user}}"
-    group: "{{kube_non_root_user}}"
+    - name: copy kubeconfig to user directory
+      copy:
+        src: /etc/kubernetes/admin.conf
+        dest: "{{kube_non_root_user_home_dir}}/.kube/config"
+        mode: preserve
+        owner: "{{kube_non_root_user}}"
+        group: "{{kube_non_root_user}}"
 
-- name: download pod network manifest
-  become: true
-  become_user: "{{kube_non_root_user}}"
-  get_url:
-    url: "{{kube_pod_network_manifest_url}}"
-    dest: "{{kube_non_root_user_home_dir}}"
+    - name: download pod network manifest
+      become: true
+      become_user: "{{kube_non_root_user}}"
+      get_url:
+        url: "{{kube_pod_network_manifest_url}}"
+        dest: "{{kube_non_root_user_home_dir}}"
 
-- name: deploy podnetwork
-  shell: kubectl apply -f calico.yml
-#  when: "{{ kube_pod_network }}" == "calico"
+    - name: deploy podnetwork
+      shell: kubectl apply -f calico.yml
+    #  when: "{{ kube_pod_network }}" == "calico"
 
