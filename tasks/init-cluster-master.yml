@@ -41,9 +41,8 @@
     #    delegate_to: localhost
 
     - name: deploy podnetwork
-      shell: kubectl apply -f calico.yml
+      shell: kubectl apply -f files/calico.yml
       register: podnetwork
-      ignore_errors: true
 
   become: true
   become_user: "{{kube_non_root_user}}"
