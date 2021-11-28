@@ -6,6 +6,7 @@
     --apiserver-advertise-address={{kube_apiserver_ip}}
     --pod-network-cidr={{kube_pod_network_cidr}}
     --ignore-preflight-errors=all
+    --cgroup-driver=cgroupfs
   ignore_errors: true
   no_log: true
   register: kubeadm_init
@@ -14,10 +15,10 @@
   debug:
     var: kubeadm_init
 
-- name: test loop through stdout.lines
-  debug:
-    msg: "{{ item }}"
-  loop: "{{ kubeadm_init.stdoutlines }}"
+#- name: test loop through stdout.lines
+#  debug:
+#    msg: "{{ item }}"
+#  loop: "{{ kubeadm_init.stdoutlines }}"
 
 # the below block to execute only on kubeadm initialization
 - name:

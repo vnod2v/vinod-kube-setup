@@ -16,11 +16,11 @@
       - kubectl
     state: present
 
-- name: add cgroup driver
-  lineinfile:
-    path: "{{kubeadm_conf}}"
-    insertafter: 'Environment="KUBELET_CONFIG_ARGS=--config=/var/lib/kubelet/config.yaml"'
-    line: Environment="cgroup-driver=cgroupfs"
+#- name: add cgroup driver
+#  lineinfile:
+#    path: "{{kubeadm_conf}}"
+#    insertafter: 'Environment="KUBELET_CONFIG_ARGS=--config=/var/lib/kubelet/config.yaml"'
+#    line: Environment="cgroup-driver=cgroupfs"
 
 - name: restart kubelet
   service: name=kubelet state=restarted
