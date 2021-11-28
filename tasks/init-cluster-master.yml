@@ -6,6 +6,8 @@
     --apiserver-advertise-address={{kube_apiserver_ip}}
     --pod-network-cidr={{kube_pod_network_cidr}}
     --ignore-preflight-errors=all
+  ignore_errors: true
+  no_log: true
   register: kubeadm_init
 
 - name: print kubeadm init output
