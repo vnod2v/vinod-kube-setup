@@ -41,7 +41,7 @@
     #    delegate_to: localhost
 
     - name: deploy podnetwork
-      shell: kubectl apply -f calico.yml
+      shell: kubectl apply -f calico.yaml
       register: podnetwork
 
   become: true
