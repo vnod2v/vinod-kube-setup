@@ -18,7 +18,7 @@
   debug:
     msg: {{ item }}
   until : {{ item }} == "Your Kubernetes control-plane has initialized successfully!"
-  loop: {{ kubeadm_init.stdoutlines }}
+  loop: "{{ kubeadm_init.stdoutlines }}"
 
 # the below block to execute only on kubeadm initialization
 - name:
