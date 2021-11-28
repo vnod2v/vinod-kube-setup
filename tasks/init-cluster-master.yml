@@ -29,7 +29,7 @@
   copy:
     src: /etc/kubernetes/admin.conf
     dest: "{{kube_non_root_user_home_dir}}/.kube/config"
-    mode: preserve
+    mode: 600
     owner: "{{kube_non_root_user}}"
     group: "{{kube_non_root_user}}"
 
