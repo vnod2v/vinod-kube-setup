@@ -18,8 +18,8 @@
 #  loop: "{{ kubeadm_init.stdoutlines }}"
 
 # the below block to execute only on kubeadm initialization
-- block
-    - name: create
+  block:
+    - name: create .kube directory
       file:
         path: "{{kube_non_root_user_home_dir}}/.kube"
         state: directory
