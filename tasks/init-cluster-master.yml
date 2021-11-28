@@ -26,7 +26,10 @@
     state: directory
 
 - name: copy kubeconfig to user directory
-  command: whoami
+  shell: whoami
+  register: whoami
+- debug:
+    var: whoami
 #  copy:
 #    src: /etc/kubernetes/admin.conf
 #    dest: "{{kube_non_root_user_home_dir}}/.kube/config"
