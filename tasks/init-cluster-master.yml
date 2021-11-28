@@ -9,12 +9,12 @@
   ignore_errors: true
   no_log: true
   register: kubeadm_init
-  tags: kubeadm init
+  tags: kubeadm_init
 
 - name: print kubeadm init output
   debug:
     var: kubeadm_init
-  tags: kubeadm init
+  tags: kubeadm_init
 
 # the below block to execute only on kubeadm initialization
 - name:
