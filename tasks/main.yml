@@ -12,6 +12,7 @@
     - name: check k8s cluster is already initialized
       command: kubectl get nodes
       register: kubectl_exists
+      ignore_errors: true
       tags: verify
 
     - name: print k8s cluster validation result
