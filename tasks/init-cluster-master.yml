@@ -49,6 +49,6 @@
         var: podnetwork
     #  when: "{{ kube_pod_network }}" == "calico"
 
-    become: true
-    become_user: "{{kube_non_root_user}}"
+  become: true
+  become_user: "{{kube_non_root_user}}"
 
