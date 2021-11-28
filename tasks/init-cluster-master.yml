@@ -43,6 +43,7 @@
 - name: deploy podnetwork
   shell: kubectl apply -f calico.yml
   register: podnetwork
+  ignore_errors: true
 
 - name: echo calico output
   debug:
