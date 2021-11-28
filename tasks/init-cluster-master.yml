@@ -8,7 +8,6 @@
     --ignore-preflight-errors=all
     --cgroup-driver=cgroupfs
   ignore_errors: true
-  no_log: true
   register: kubeadm_init
 
 - name: test print kubeadm init output
