@@ -44,6 +44,14 @@
       shell: kubectl apply -f calico.yaml
       register: podnetwork
 
+    - name: run kubectl command
+      command: kubectl get pods
+      register: kubectl_output
+
+    - name: test kubectl
+      debug:
+        var: kubectl_output.stdout
+
   become: true
   become_user: "{{kube_non_root_user}}"
 
