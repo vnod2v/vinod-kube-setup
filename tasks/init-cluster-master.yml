@@ -16,13 +16,13 @@
   become: true
   become_user: "{{kube_non_root_user}}"
   file:
-    path: "{{kube_non_root_user_home_dir}}/.kube"
+    path: "{{kube_non_root_user_home_dir}}/.kube/config"
     state: directory
 
 - name: copy kubeconfig to user directory
   copy:
     src: /etc/kubernetes/admin.conf
-    dest: "{{kube_non_root_user_home_dir}}/.kube"
+    dest: "{{kube_non_root_user_home_dir}}/.kube/config"
     mode: preserve
     owner: "{{kube_non_root_user}}"
     group: "{{kube_non_root_user}}"

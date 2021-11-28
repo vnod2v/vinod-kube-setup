@@ -8,6 +8,18 @@
   include_tasks: install-kube-ubuntu.yml
 
 - block:
+
+    - name: check k8s cluster is already initialized
+      command: kubectl get nodes
+      register: kubectl_exists
+      tags: verify
+
+    - name: print k8s cluster validation result
+      debug:
+        var: kubectl_exists.rc
+      tags: verify
+
     - name: init cluster on master node
       include_tasks: init-cluster-master.yml
+
   when: inventory_hostname in groups['master']
