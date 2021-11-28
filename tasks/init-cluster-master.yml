@@ -6,7 +6,6 @@
     --apiserver-advertise-address={{kube_apiserver_ip}}
     --pod-network-cidr={{kube_pod_network_cidr}}
     --ignore-preflight-errors=all
-    --cgroup-driver=cgroupfs
   ignore_errors: true
   register: kubeadm_init
 
